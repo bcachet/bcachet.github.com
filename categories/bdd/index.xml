@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bdd on Another developer blog</title>
+    <link>/categories/bdd/</link>
+    <description>Recent content in Bdd on Another developer blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Jul 2013 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/categories/bdd/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Write user stories</title>
+      <link>/blog/2013/07/01/write-user-stories/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/07/01/write-user-stories/</guid>
+      <description>
+
+&lt;h1 id=&#34;story-always-involve-a-user-customer:4085a9812ef43743583343a2bd0eae33&#34;&gt;Story always involve a User/Customer&lt;/h1&gt;
+
+&lt;p&gt;A story is associated to a clearly defined user/customer. If not, maybe this
+feature will benefit nobody and should not be implemented&lt;/p&gt;
+
+&lt;p&gt;Before writing stories, we can define
+&lt;a href=&#34;http://www.romanpichler.com/blog/agile-product-innovation/persona-template-for-agile-product-management/&#34;&gt;personas&lt;/a&gt;.
+that will represent our customers. Then we connect each story to the right
+persona.&lt;/p&gt;
+
+&lt;h1 id=&#34;level-of-details:4085a9812ef43743583343a2bd0eae33&#34;&gt;Level of details&lt;/h1&gt;
+
+&lt;p&gt;It&amp;rsquo;s hard to get stories&amp;rsquo;s details correcly. A story should not be too vague and
+shoud not prescribe the solution because of too much details (should answer
+&lt;em&gt;what&lt;/em&gt; and not &lt;em&gt;how&lt;/em&gt;).&lt;/p&gt;
+
+&lt;p&gt;Steps to define details:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Start new features with &lt;strong&gt;&lt;a href=&#34;http://www.romanpichler.com/blog/user-stories/epics-and-ready-stories/&#34;&gt;epics&lt;/a&gt;&lt;/strong&gt;:
+coarse-grained stories. &lt;strong&gt;Epics&lt;/strong&gt; capture an idea.&lt;/li&gt;
+&lt;li&gt;Split epic into more detailed user stories.&lt;/li&gt;
+&lt;li&gt;When picking stories for a sprint, these stories should be &lt;strong&gt;&lt;a href=&#34;http://www.romanpichler.com/blog/user-stories/epics-and-ready-stories/&#34;&gt;ready stories&lt;/a&gt;&lt;/strong&gt; that are clear, feasible and testable.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Iteratively refining stories keeps your backlog concise which will help you add
+new insights.&lt;/p&gt;
+
+&lt;h1 id=&#34;involve-the-team:4085a9812ef43743583343a2bd0eae33&#34;&gt;Involve the team&lt;/h1&gt;
+
+&lt;p&gt;The team should be involved in writing story details in order to get them ready
+for the next sprint.&lt;/p&gt;
+
+&lt;h1 id=&#34;acceptance-and-testing:4085a9812ef43743583343a2bd0eae33&#34;&gt;Acceptance and testing&lt;/h1&gt;
+
+&lt;p&gt;Every story should contain &lt;strong&gt;&lt;a href=&#34;http://www.romanpichler.com/blog/user-stories/agile-nonfunctional-requirements/&#34;&gt;acceptance criteria&lt;/a&gt;&lt;/strong&gt;
+that will describe the conditions needed to validate a story. The criteria
+make it more precise and testable.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;As a conference attendee
+I want to be able to register online
+In order to register quickly
+And cut down on paperwork
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For the above example, the acceptance criteria could include:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A user cannot submit a form without completing all the mandatory fields&lt;/li&gt;
+&lt;li&gt;Information from the form is stored in the registrations database&lt;/li&gt;
+&lt;li&gt;Protection against spam is working&lt;/li&gt;
+&lt;li&gt;Payment can be made via credit card&lt;/li&gt;
+&lt;li&gt;An acknowledgment email is sent to the user after submitting the form.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Epics&lt;/strong&gt; do not need acceptance criteria but &lt;strong&gt;ready stories&lt;/strong&gt; should. Defining
+acceptance criteria with the team during scrums will help them understand the
+feature from the user&amp;rsquo;s point of view/perspective.&lt;/p&gt;
+
+&lt;h3 id=&#34;note:4085a9812ef43743583343a2bd0eae33&#34;&gt;Note&lt;/h3&gt;
+
+&lt;p&gt;I write this post after reading this &lt;a href=&#34;http://java.dzone.com/articles/5-common-user-story-mistakes&#34;&gt;article&lt;/a&gt; from &lt;a href=&#34;http://www.romanpichler.com/blog/&#34;&gt;Roman Pichler&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
