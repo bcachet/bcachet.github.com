@@ -3,13 +3,10 @@
 # Build the project.
 hugo
 
-cur_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-for sub_dir in ./public ./; do
-  cd ${cur_dir}/$sub_dir
-  if [[ -n $(git status --porcelain) ]]; then
-    git add -A
-    git commit -m "$1"
-    git push origin master
-  fi
-done
+if [[ -n $(git status --porcelain) ]]; then
+  git add -A
+  git commit -m "$1"
+  git push origin source
+fi
 
+git subtree push --prefix=public git@github.com:bcachet/bcachet.github.com.git master
