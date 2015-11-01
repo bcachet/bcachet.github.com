@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Embedded on Another developer blog</title>
+    <link>/categories/embedded/</link>
+    <description>Recent content in Embedded on Another developer blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Jun 2012 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/categories/embedded/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Access hardware register safely</title>
+      <link>/blog/2012/06/25/access-hardware-register-safely/</link>
+      <pubDate>Mon, 25 Jun 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/06/25/access-hardware-register-safely/</guid>
+      <description>
+
+&lt;p&gt;In embedded development, there is a task we do every day: accessing hardware via
+a register mapped to a known physical memory address.&lt;/p&gt;
+
+&lt;h1 id=&#34;naive-declaration:7f24d4c306244bcb7fb73e435ff27119&#34;&gt;Naive declaration&lt;/h1&gt;
+
+&lt;p&gt;I have declared such a register for years this way:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;uint8 * p_reg = (uint8 *) 0x00080000;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which can be readen as &lt;strong&gt;p_reg&lt;/strong&gt; is a &lt;strong&gt;pointer&lt;/strong&gt; to a &lt;strong&gt;8-bit unsigned integer&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You modify the content of this register this way:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;*p_reg = REG_ACTIVATE_HARDWARE;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Really easy, but this code can be &lt;em&gt;optimized&lt;/em&gt; to take into account two aspects
+of an harware register:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;address of the register will never be modified&lt;/li&gt;
+&lt;li&gt;register content can be modified outside of process at any time (by hardware itself)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;register-address-will-not-change:7f24d4c306244bcb7fb73e435ff27119&#34;&gt;Register address will not change&lt;/h1&gt;
+
+&lt;p&gt;Indeed with the previous declaration, compiler will not warn us if we make a
+typo and write the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;p_reg = REG_ACTIVATE_HARDWARE;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;because we doesn&amp;rsquo;t declare the pointer as constant with the &lt;strong&gt;const&lt;/strong&gt; keyword.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;uint8 * const p_reg = (uint8 *) 0x00080000;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;readen as &lt;strong&gt;p_reg&lt;/strong&gt; is a &lt;strong&gt;constant pointer to 8bit unsigned integer&lt;/strong&gt;. This
+mean that you can change content of &lt;strong&gt;p_reg&lt;/strong&gt; register but not the pointer
+(address where it point). So with the last declaration, if we miss the pointer
+dereference then compilation will end up with an error.&lt;/p&gt;
+
+&lt;h1 id=&#34;register-is-updated-outside-of-process:7f24d4c306244bcb7fb73e435ff27119&#34;&gt;Register is updated outside of process&lt;/h1&gt;
+
+&lt;p&gt;Moreover when optimizing generated code with GCC we can have strange behavior.
+For example, if we write some code to loop reading the register content to check
+that status has been modified&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;uint8 * p_reg = (uint8 *) 0x1;
+
+// Wait for register to become non-zero
+while (*p_reg == 0) { } // Do something else
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Generated assemble code will become something like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-nasm&#34;&gt;mov ptr, #0x1
+mov a, @ptr
+loop:
+  bz loop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which en up in an infinite loop. Indeed, &lt;strong&gt;p_reg&lt;/strong&gt; variable is set once, so GCC
+optimize by not reading it every time. We should use the &lt;strong&gt;volatile&lt;/strong&gt; keyword to
+indicate that this variable can be changed at any time by outside of this process.&lt;/p&gt;
+
+&lt;p&gt;If the declaration use the &lt;strong&gt;volatile&lt;/strong&gt; keyword&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;uint8 volatile p_reg = (uint8 volatile *)0x1;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;then the generated assembler (even if optimized) become something like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-nasm&#34;&gt;mov ptr, #0x1
+loop:
+  mov a, @ptr
+  bz loop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;final-declaration:7f24d4c306244bcb7fb73e435ff27119&#34;&gt;Final declaration&lt;/h1&gt;
+
+&lt;p&gt;I finally use the following declaration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;uint8 volatile * const p_reg = (uint8 *) 0x00080000;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which can be read as &lt;strong&gt;p_reg&lt;/strong&gt; is a &lt;strong&gt;constant pointer&lt;/strong&gt; to a &lt;strong&gt;volatile 8-bit unsigned integer&lt;/strong&gt; which is exactly what a register is.&lt;/p&gt;
+
+&lt;h3 id=&#34;note:7f24d4c306244bcb7fb73e435ff27119&#34;&gt;note&lt;/h3&gt;
+
+&lt;p&gt;You can have a complete understanding of the mecanism used here reading
+&lt;a href=&#34;http://embeddedgurus.com/barr-code/2012/01/combining-cs-volatile-and-const-keywords/&#34;&gt;Combining C&amp;rsquo;s volatile and const Keywords&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

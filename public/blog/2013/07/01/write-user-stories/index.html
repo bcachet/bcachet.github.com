@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Write user stories &middot; Bertrand Cachet</title>
+
+  
+  <link rel="stylesheet" href="/css/poole.css">
+  <link rel="stylesheet" href="/css/hyde.css">
+  <link rel="stylesheet" href="/css/poole-overrides.css">
+  <link rel="stylesheet" href="/css/hyde-overrides.css">
+  <link rel="stylesheet" href="/css/hyde-x.css">
+  <link rel="stylesheet" href="/css/highlight/solarized_light.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Write good user stories">
+  <meta name="keywords" content="bdd,user stories">
+  
+</head>
+<body class="theme-base-0d">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="/">
+        
+          <img src="https://www.gravatar.com/avatar/b7a60d4e4106c36748cbdff3fb82e543?s=200"
+               alt="gravatar" title="Bertrand Cachet">
+        
+        <h1>Bertrand Cachet</h1>
+      </a>
+      <p class="lead">Learning new programming languages to learn new paradigm</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/bcachet"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="http://www.linkedin.com/in/bertrandcachet"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      <a href="https://twitter.com/bertrand_cachet"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2015 <a href="/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Write user stories</h1>
+    <span class="post-date">Jul 1, 2013 &middot; 2 minute read &middot; <a href="/blog/2013/07/01/write-user-stories/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="/categories/bdd">bdd</a>
+    </span>
+    
+
+<h1 id="story-always-involve-a-user-customer:4085a9812ef43743583343a2bd0eae33">Story always involve a User/Customer</h1>
+
+<p>A story is associated to a clearly defined user/customer. If not, maybe this
+feature will benefit nobody and should not be implemented</p>
+
+<p>Before writing stories, we can define
+<a href="http://www.romanpichler.com/blog/agile-product-innovation/persona-template-for-agile-product-management/">personas</a>.
+that will represent our customers. Then we connect each story to the right
+persona.</p>
+
+<h1 id="level-of-details:4085a9812ef43743583343a2bd0eae33">Level of details</h1>
+
+<p>It&rsquo;s hard to get stories&rsquo;s details correcly. A story should not be too vague and
+shoud not prescribe the solution because of too much details (should answer
+<em>what</em> and not <em>how</em>).</p>
+
+<p>Steps to define details:</p>
+
+<ul>
+<li>Start new features with <strong><a href="http://www.romanpichler.com/blog/user-stories/epics-and-ready-stories/">epics</a></strong>:
+coarse-grained stories. <strong>Epics</strong> capture an idea.</li>
+<li>Split epic into more detailed user stories.</li>
+<li>When picking stories for a sprint, these stories should be <strong><a href="http://www.romanpichler.com/blog/user-stories/epics-and-ready-stories/">ready stories</a></strong> that are clear, feasible and testable.</li>
+</ul>
+
+<p>Iteratively refining stories keeps your backlog concise which will help you add
+new insights.</p>
+
+<h1 id="involve-the-team:4085a9812ef43743583343a2bd0eae33">Involve the team</h1>
+
+<p>The team should be involved in writing story details in order to get them ready
+for the next sprint.</p>
+
+<h1 id="acceptance-and-testing:4085a9812ef43743583343a2bd0eae33">Acceptance and testing</h1>
+
+<p>Every story should contain <strong><a href="http://www.romanpichler.com/blog/user-stories/agile-nonfunctional-requirements/">acceptance criteria</a></strong>
+that will describe the conditions needed to validate a story. The criteria
+make it more precise and testable.</p>
+
+<p>Example:</p>
+
+<pre><code>As a conference attendee
+I want to be able to register online
+In order to register quickly
+And cut down on paperwork
+</code></pre>
+
+<p>For the above example, the acceptance criteria could include:</p>
+
+<ul>
+<li>A user cannot submit a form without completing all the mandatory fields</li>
+<li>Information from the form is stored in the registrations database</li>
+<li>Protection against spam is working</li>
+<li>Payment can be made via credit card</li>
+<li>An acknowledgment email is sent to the user after submitting the form.</li>
+</ul>
+
+<p><strong>Epics</strong> do not need acceptance criteria but <strong>ready stories</strong> should. Defining
+acceptance criteria with the team during scrums will help them understand the
+feature from the user&rsquo;s point of view/perspective.</p>
+
+<h3 id="note:4085a9812ef43743583343a2bd0eae33">Note</h3>
+
+<p>I write this post after reading this <a href="http://java.dzone.com/articles/5-common-user-story-mistakes">article</a> from <a href="http://www.romanpichler.com/blog/">Roman Pichler</a>.</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "bcachet";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "bcachet";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-260700-9'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>
+
