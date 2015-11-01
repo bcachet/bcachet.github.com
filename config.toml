@@ -1,0 +1,62 @@
+baseurl = "/"
+title = "Another developer blog"
+languageCode = "en-us"
+
+disqusShortname = "bcachet"
+MetaDataFormat = "toml"
+theme = "hyde-x"
+paginate = 10
+
+[author]
+    name = "Bertrand Cachet"
+
+[permalinks]
+    # Change the permalink format for the 'post' content type.
+    post = "/blog/:year/:month/:day/:title/"
+
+[taxonomies]
+    category = "categories"
+
+[params]
+    # If false display full article contents in blog index.
+    # Otherwise show description and 'read on' link to individual blog post page.
+    # Default (if omitted) is true.
+    truncate = true
+
+    # Default page metadata, used when the specific page doesn't set its own.
+    # defaultDescription = ""
+    defaultKeywords = "bertrand cachet,blog"
+
+    # Changes sidebar background and link/accent colours.
+    # This also works: "theme-base-0c layout-reverse", or just "layout-reverse".
+	  theme = "theme-base-0d"
+
+    # Select a syntax highight.
+    highlight = "solarized_light"
+
+    # Tagline to display under the author name in the sidebar, keep it short.
+    # You can use markdown here.
+    tagline = "Learning new programming languages to learn new paradigm"
+
+    # Text for the top menu link, which goes the root URL for the site.
+    # Default (if omitted) is "Blog".
+    home = "Home"
+
+    # Metadata used to drive integrations.
+  	# googleAuthorship = "116158239234656634929"
+    googleAnalytics = "UA-260700-9"
+    gravatarHash = "b7a60d4e4106c36748cbdff3fb82e543"
+
+    # Sidebar social links.
+    github = "https://github.com/bcachet"
+    bitbucket = ""
+    linkedin = "http://www.linkedin.com/in/bertrandcachet"
+    googleplus = ""
+    facebook = ""
+    twitter = "https://twitter.com/bertrand_cachet"
+    youtube = ""
+
+    # Other social-like sidebar links
+    rss = true# switch to true to enable RSS icon link
+    # flattr = ""  # populate with your flattr uid
+
